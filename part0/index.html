@@ -1,12 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Intruduction Midudev</title>
+    <style>
+      picture {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100px;
+      }
+      picture.is-small {
+        width: 50px;
+      }
+      picture.is-large {
+        width: 200px;
+      }
+      picture h4 {
+        margin: 20px;
+      }
+      img {
+        box-shadow: 0 0 15px #999;
+        border-radius: 50%;
+        width: 100%;
+      }
+      img.disabled {
+        opacity: 0.5;
+      }
+      i {
+        border: 1px solid #ccc;
+        border-radius: 50px;
+        display: flex;
+        min-height: 50px;
+        width: 100px;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Women in Tech with Contador</h1>
+    <div id="app"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      const app = document.getElementById('app');
+      const useState = React.useState;
+
+      const Avatar = ({ name = 'username', size, id }) => {
+        const [enabled, setEnable] = useState(true); //state with initial state
+        const src = id
+          ? `https://randomuser.me/api/portraits/women/${id}.jpg`
+          : 'https://randomuser.me/api/portraits/lego/1.jpg';
+        const imgClassName = enabled ? '' : 'disabled';
+
+        //renderizado condicional, si tienes una props o otra renderiza esto.
+
+        let pictureClassName = '';
+        if (size === 'small') {
+          pictureClassName = 'is-small';
+        } else if (size === 'large') {
+          pictureClassName = 'is-large';
+        } else {
+          pictureClassName = '';
+        }
+
+        return (
+          <picture className={pictureClassName}>
+            {id ? (
+              <img
+                src={src}
+                onClick={() => setEnable(!enabled)}
+                className={imgClassName}
+              />
+            ) : (
+              <i> Sin Imagen</i>
+            )}
+            <strong>{enabled ? name : 'Disabled'}</strong>
+          </picture>
+        );
+      };
+
+      const Contador = () => {
+        const [contador, actualizarContador] = useState(0);
+        const [numeroVeces, setNumeroVeces] = useState(0);
+        return (
+          <React.Fragment>
+            <span>{contador}</span>
+            <button
+              onClick={() => {
+                actualizarContador(contador + 1);
+                setNumeroVeces(numeroVeces + 1);
+              }}
+            >
+              Incrementar +
+            </button>
+            <button
+              onClick={() => {
+                actualizarContador(contador - 1);
+                setNumeroVeces(numeroVeces + 1);
+              }}
+            >
+              Decrementar -
+            </button>
+            <p>Numero de veces : {numeroVeces}</p>
+          </React.Fragment>
+        );
+      };
+
+      ReactDOM.render(
+        <React.Fragment>
+          <Avatar id={7} name="Camila" size="small" />
+          <Avatar name="Anna" />
+          <Avatar id={19} name="Danielle" size="large" />
+          <Contador />
+        </React.Fragment>,
+        app
+      );
+    </script>
+  </body>
 </html>
