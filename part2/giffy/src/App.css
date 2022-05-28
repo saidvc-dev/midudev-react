@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+}
+
+
+.App-content {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  padding: 16px;
+  color: white;
+}
+small{
+  display:block;
+}
+.button{
+  font-size: 25px;
+  padding: 5px;
+  border-radius: 2px;
+  color: white;
+  background-color:  rgb(87, 87, 211);
+  border-style:none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.button:hover{
+  background-color:rgb(104, 106, 212);
+  color:white;
+}
+.a{
+  color:aqua;
+  font-size: medium;
+}

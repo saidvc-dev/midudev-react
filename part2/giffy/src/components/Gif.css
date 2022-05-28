@@ -1,0 +1,17 @@
+.gif{
+    border: 1px solid gray;
+    margin: 5px;
+    display: flex;
+    flex-direction:column;
+    margin: 16px;
+    width: 40%;
+    padding: 32px;
+    text-decoration: none;
+    margin: 5px auto;
+}
+.gif img{
+    object-fit:contain;
+}
+.gif h4{
+    margin:0;
+}
